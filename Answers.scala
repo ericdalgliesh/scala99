@@ -79,3 +79,23 @@ def pack[A](list:List[A]):List[List[A]] = {
 		case (head :: tail) => detect(list, Nil, head)
 	}
 }
+/*
+def encode[A](list:List[A]):List[Tuple2[Int, A]] = {
+	val packed = pack(list)
+	def listToTuple(l:List[A]):Tuple2[Int,A] = l match {
+		case (h::_) => (length(l), h)
+		case Nil => throw new IllegalArgumentException("Nil is not an acceptable value.")
+	}
+	def traverse(l:List[List[A]]):List[Tuple2[Int,A]] = l match {
+		case Nil => throw new IllegalArgumentException("Nil not acceptable")
+		case (h::Nil) => List(listToTuple(h))
+		case (h::t) => listToTuple(h) +: traverse(t)
+	}
+	traverse(pack(list))
+} */
+
+// internet answer
+def encode[A](list:List[A]):List[Tuple2[Int, A]] = {
+	pack (list) map {l => (l.length, l.head)}
+}
+
