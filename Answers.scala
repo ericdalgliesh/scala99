@@ -1,8 +1,9 @@
-def last[A](list: List[A]): Option[A] = list match {
-	case Nil => None
-	case head :: Nil => Some(head)
+def last[A](list: List[A]): A = list match {
+	case Nil => throw new NoSuchElementException
+	case head :: Nil => head
 	case head :: tail => last(tail)
 }
+
 def penultimate[A](list: List[A]): Option[A] = list match {
 	case Nil => None
 	case head :: tail :: Nil => Some(head)
