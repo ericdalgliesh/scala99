@@ -100,3 +100,10 @@ def encode[A](list:List[A]):List[Tuple2[Int, A]] = {
 	pack (list) map {l => (l.length, l.head)}
 }
 
+def encodeModified[A](list:List[A]):List[Any] = {
+	pack (list) map { l =>
+	  if (l.length == 1) l.head
+	  else (l.length, l.head)
+	}
+}
+
